@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahamaya Girls' College Quiz Club | Kandy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="images/quiz-club-logo.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --navy-light: #1a3060;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e4a8;
+    --cream: #faf6ee;
+    --white: #ffffff;
+    --text-dark: #0a1628;
+    --text-mid: #2c3e6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 84px;
+    backdrop-filter: blur(8px);
+  }
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-frame {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+}
+
+.logo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-frame:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(201, 168, 87, 0.4);
+}
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 100%;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active {
+    color: var(--gold);
+  }
+  .nav-links a.active::after {
+    right: 0;
+  }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.45rem 1.2rem;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ── PAGE SECTIONS ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(26,48,96,0.6) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 40s linear infinite;
+  }
+
+  .hero-ornament::before {
+    content: '';
+    position: absolute; inset: 30px;
+    border: 1px solid rgba(201,168,76,0.05);
+    border-radius: 50%;
+  }
+
+  @keyframes rotate { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .hero-content {
+    text-align: center;
+    position: relative; z-index: 2;
+    padding: 2rem;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s 0.2s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 1.2s 0.3s ease both;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 2.5vw, 1.6rem);
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
+    animation: fadeUp 1.2s 0.4s ease both;
+  }
+
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 2rem;
+    animation: fadeUp 1.2s 0.5s ease both;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.05em;
+    animation: fadeUp 1.2s 0.6s ease both;
+  }
+
+  .hero-tagline em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(201,168,76,0.5);
+    font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+    animation: bounce 2s ease infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    padding: 6rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .gold-rule {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin-bottom: 2rem;
+  }
+
+  /* ── BOARD OF OFFICIALS ── */
+  #board {
+    background: var(--navy);
+    padding: 6rem 2rem;
+  }
+
+  #board .section-title { color: var(--white); }
+  #board .section-label { color: var(--gold); }
+
+  .board-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .board-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 1.8rem 2rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .board-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+
+  .board-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+  .board-card:hover::before { height: 100%; }
+
+  .board-role {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .board-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  /* ── FEATURE / ABOUT HISTORY ── */
+  #feature {
+    background: var(--cream);
+    max-width: 100%;
+  }
+
+  .feature-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .feature-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .feature-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #2c3e6b;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-visual {
+    position: relative;
+    padding: 3rem;
+  }
+
+  .feature-stat-box {
+    background: var(--navy);
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-stat-box::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  .stat-year {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+  }
+
+  .stat-items {
+    display: flex; flex-direction: column; gap: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding-top: 1.5rem;
+  }
+
+  .stat-item {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .stat-item-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .stat-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* ── ABOUT / RULES ── */
+  #about {
+    background: var(--navy-mid);
+    padding: 6rem 2rem;
+  }
+
+  #about .section-title { color: var(--white); }
+
+  .about-inner {
+    max-width: 800px; margin: 3rem auto 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .about-inner p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center; gap: 0.6rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.85rem 2rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .btn-solid {
+    background: var(--gold);
+    color: var(--navy);
+    border: 1px solid var(--gold);
+    padding: 0.85rem 2.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .btn-solid:hover { background: var(--gold-light); border-color: var(--gold-light); }
+
+  /* ── CTA ── */
+  #cta {
+    background: var(--cream);
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta::before {
+    content: 'QUAERENTEM';
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 12rem;
+    font-weight: 700;
+    color: rgba(10,22,40,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-inner {
+    max-width: 700px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .cta-inner p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    padding: 6rem 2rem;
+  }
+
+  #contact .section-title { color: var(--white); }
+
+  .contact-grid {
+    max-width: 900px; margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .contact-card:hover { border-color: rgba(201,168,76,0.4); }
+
+  .contact-card-role {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .contact-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-card-detail {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .contact-email-block {
+    max-width: 900px; margin: 2rem auto 0;
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .contact-email-block a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-email-block a:hover { color: var(--gold); }
+
+  /* ── FOOTER ── */
+footer {
+  background: #050e1c;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 2rem;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(201,168,76,0.3);
+  margin: 0 auto 2rem;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.footer-nav a {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--gold);
+}
+
+/* Social Icons */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.75rem;
+  margin-bottom: 2rem;
+}
+
+.footer-social a {
+  color: rgba(255,255,255,0.55);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.footer-copy {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-social {
+    gap: 2rem;
+  }
+}
+  /* ── SUB-PAGES ── */
+  .subpage-hero {
+    background: var(--navy);
+    padding: 8rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subpage-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%);
+  }
+
+  .subpage-hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .subpage-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+  }
+
+  /* ABOUT US page */
+  .values-grid {
+    max-width: 1000px; margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .nav-links {
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav {
+      height: auto;
+      min-height: 84px;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .hero-ornament { width: 280px; height: 280px; }
+  }
+
+  .value-card {
+    background: var(--navy);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.12);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .value-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+
+  .value-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+
+  .value-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .value-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  .initiatives-list {
+    max-width: 800px; margin: 2rem auto 0;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .initiative-item {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.12);
+    transition: border-color 0.3s;
+  }
+
+  .initiative-item:hover { border-color: rgba(201,168,76,0.3); }
+
+  .initiative-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    opacity: 0.5;
+    min-width: 40px;
+    line-height: 1;
+  }
+
+  .initiative-text strong {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .initiative-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* QUAERENTEM page */
+  .qua-format-grid {
+    max-width: 900px; margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 600px) { .qua-format-grid { grid-template-columns: 1fr; } }
+
+  .qua-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .qua-card-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .qua-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .qua-card-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* CONTACT page form */
+
+  /* Gallery */
+.gallery-placeholder {
+  max-width: 1000px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .gallery-placeholder {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Each image container */
+.gallery-box {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* The actual image */
+.gallery-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover effect */
+.gallery-box:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: scale(1.02);
+}
+
+/* Optional overlay (for captions later) */
+.gallery-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,22,40,0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-box:hover::after {
+  opacity: 1;
+}
+
+  /* Location */
+  .location-map {
+    max-width: 900px; margin: 3rem auto 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .location-map p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Utility */
+  .text-center { text-align: center; }
+  .max-centered { max-width: 800px; margin-left: auto; margin-right: auto; }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+<a href="#" onclick="showPage('home'); return false;" class="nav-logo">
+    <div class="logo-frame">
+        <img src="images/school-logo.png" alt="School Logo">
+    </div>
+
+    <div class="logo-frame">
+        <img src="images/quiz-club-logo.png" alt="Quiz Club Logo">
+    </div>
+</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+    <li><a href="#" onclick="showPage('quaerentem')" class="nav-cta">Quaerentem'26</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════
+     HOME PAGE
+══════════════════════════════════ -->
+<div id="home" class="page active">
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-ornament"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Est. 2004 &nbsp;·&nbsp; Kandy, Sri Lanka</p>
+      <h1 class="hero-title">THE QUIZ CLUB</h1>
+      <h2 class="hero-subtitle">Mahamaya Girls' College Kandy</h2>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline"><em>Where minds converge</em></p>
+    </div>
+    <div class="hero-scroll">Explore</div>
+  </section>
+
+  <!-- Board of Officials -->
+  <section id="board">
+    <div style="text-align:center; margin-bottom:0;">
+      <p class="section-label">Leadership</p>
+      <h2 class="section-title" style="color:var(--white);">Board of Officials</h2>
+      <div class="gold-rule" style="margin:0 auto 0.5rem;"></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;">2026 / 2027</p>
+    </div>
+    <div class="board-grid">
+      <div class="board-card">
+        <div class="board-role">President</div>
+        <div class="board-name">Sayuni Navarathne</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Secretary</div>
+        <div class="board-name">Anjana Basnayaka</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Treasurer</div>
+        <div class="board-name">Amanda Weerasooriya</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Vice President</div>
+        <div class="board-name">Theena Ranasinghe</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Assistant Secretary</div>
+        <div class="board-name">Ruhini Jayakody<br>Pahandi Dayananda</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Assistant Treasurer</div>
+        <div class="board-name">Savindya Bandara<br>Chathuri Weerasekara</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Chief Editor</div>
+        <div class="board-name">Vihansa Sayuringee</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Chief Coordinator</div>
+        <div class="board-name">Damsara Rajapaksha</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Chief Organizer</div>
+        <div class="board-name">Pahanmi Meegammana</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Assistant Editors</div>
+        <div class="board-name">Inaksha Ranasinghe<br>Sethuni Senevirathne</div>
+      </div>
+      <div class="board-card">
+        <div class="board-role">Quiz Team Coordinator</div>
+        <div class="board-name">Ginuki Thirimanna</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Section -->
+  <section id="feature">
+    <div class="feature-inner">
+      <div class="feature-text">
+        <h1 class="subpage-hero-title"style="color:var(--navy)">QUAERENTEM'26</h1>
+        <div class="gold-rule"></div>
+        <p>Organized by the Quiz Club of Mahamaya Girls’ College, Kandy, since 2004, QUAERENTEM is a premier annual all-island inter-school quiz competition. True to its tagline, “Questioning the Valor of Wisdom,” the event challenges students under the age of 19 to engage in critical thinking rather than simple factual recall. Aside from a temporary pause during the COVID-19 pandemic, this prestigious competition has run consistently, earning distinction as the first and only major quiz tournament in Kandy organized by a girls’ school.
+
+The competition is structured into Junior and Senior categories to ensure balance and accessibility for all participants. It begins with a written table round, transitions into a unique, themed special round that changes annually, and culminates in a high-pressure live oral round on stage for the top-performing teams. Held in the school auditorium, the rigorous event concludes with an official awarding ceremony celebrating the intellectual achievements of the contestants.</p>
+        <br>
+        <a href="#" onclick="showPage('quaerentem')" class="btn-gold">Discover Quaerentem &rarr;</a>
+      </div>
+      <div class="feature-visual">
+        <div class="feature-stat-box">
+          <div class="stat-year">2004</div>
+          <div class="stat-label">Year Founded</div>
+          <div class="stat-items">
+            <div class="stat-item">
+              <span class="stat-item-label">Flagship Competition </span>
+              <span class="stat-item-value">QUAERENTEM</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item-label">QUAERENTEM Launch</span>
+              <span class="stat-item-value">2017</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item-label">Reach</span>
+              <span class="stat-item-value">All-Island</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item-label">Base</span>
+              <span class="stat-item-value">Kandy, Sri Lanka</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Rules Section -->
+  <section id="about" style="background:var(--navy-mid);">
+    <div class="text-center">
+      <p class="section-label">Governance</p>
+      <h2 class="section-title" style="color:var(--white);">Rules &amp; Regulations</h2>
+      <div class="gold-rule" style="margin:0 auto 0;"></div>
+    </div>
+    <div class="about-inner">
+      <p>The official rules and regulations governing quiz conduct and competition participation are maintained in our official documentation.</p>
+      
+      <a href="QUAERENTEM'26 R&R.pdf#" class="btn-gold" target="_blank">
+         &nbsp; View Rules &amp; Regulations
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta">
+    <div class="cta-inner">
+      <p class="section-label" style="text-align:center;">Join the Movement</p>
+      <h2 class="section-title" style="text-align:center;">Register for<br>QUAERENTEM'26</h2>
+      <div class="gold-rule" style="margin:0 auto 2rem;"></div>
+      <p>Register to take part in QUAERENTEM, where intellect meets opportunity. Begin your journey today.</p>
+      <a href="https://forms.gle/fXVFNQHY49MwUSTR6#" class="btn-solid" target="_blank">Register Now</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background:var(--navy);">
+    <div class="text-center">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title" style="color:var(--white);">Contact</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card text-center">
+        <div class="contact-card-role">President</div>
+        <div class="contact-card-name">Sayuni Navarathne</div>
+        <div class="contact-card-detail">071 686 7569</div>
+      </div>
+      <div class="contact-card text-center">
+        <div class="contact-card-role">Secretary</div>
+        <div class="contact-card-name">Anjana Basnayaka</div>
+        <div class="contact-card-detail">076 942 8356</div>
+      </div>
+      <div class="contact-card text-center">
+        <div class="contact-card-role">Teacher In Charge</div>
+        <div class="contact-card-name">Mrs. Deeksha Idamegama</div>
+        <div class="contact-card-detail">076 974 4603</div>
+      </div>
+    </div>
+    <div class="contact-email-block">
+      <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;font-family:'Raleway',sans-serif;">Email Us</p>
+      <a href="mailto:mahamayaqc@gmail.com">mahamayaqc@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">MAHAMAYA GIRLS' COLLEGE QUIZ CLUB</div>
+    <div class="footer-sub">Kandy, Sri Lanka &nbsp;·&nbsp; Est. 2004</div>
+    <div class="footer-divider"></div>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('about')">About Us</a></li>
+      <li><a href="#" onclick="showPage('quaerentem')">Quaerentem'26</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+<!-- Social Media Icons -->
+ <div class="footer-social">
+  <a href="https://www.facebook.com/p/Quiz-Club-Of-Mahamaya-Girls-College-100084493131429/" target="_blank" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://www.instagram.com/mahamayaqc_/#" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://whatsapp.com/channel/0029VbCZg6R3gvWaUppE2b13" target="_blank" aria-label="WhatsApp Channel">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+    <div class="footer-copy">&copy; 2026 Mahamaya Girls' College Quiz Club. All rights reserved.<br>Developed by Amanda Weerasooriya</div>
+  </footer>
+
+</div><!-- /home -->
+
+<!-- ══════════════════════════════════
+     ABOUT US PAGE
+══════════════════════════════════ -->
+<div id="about-page" class="page">
+
+  <div class="subpage-hero">
+    <p class="section-label">Our Story</p>
+    <h1 class="subpage-hero-title">About Us</h1>
+    <p class="subpage-hero-sub">Mahamaya Girls' College Quiz Club</p>
+  </div>
+
+  <!-- About Section -->
+  <section style="background:var(--cream);">
+    <div class="max-centered text-center">
+      <h2 class="section-title">Popularizing Quizzing<br>as a Mind Sport</h2>
+      <div class="gold-rule" style="margin:0 auto 2rem;"></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.9;color:var(--text-mid);margin-bottom:1.25rem;">
+        Founded in 2004, the Quiz Club of Mahamaya Girls’ College, Kandy, was established with the aim of fostering intellectual curiosity, critical thinking, and a lasting passion for knowledge among students. Over the years, it has evolved from a small group of enthusiasts into one of Sri Lanka’s most formidable and recognized quizzing institutions, defined by consistency, discipline, and a strong competitive edge. In 2017, the club further expanded its reach with the launch of <b>QUAERENTEM</b>, its all-island inter-school quiz competition, attracting leading schools from across the island. Grounded in the belief that quizzing is not merely a competition but a discipline that sharpens the mind, the club continues to promote it as a legitimate and transformative intellectual pursuit, particularly empowering young women, while maintaining an outstanding record of achievements and accolades within the national quizzing circuit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+
+<section style="background:var(--navy);padding:5rem 2rem;">
+    <div class="text-center">
+      
+      <h2 class="section-title" style="color:var(--white);">What We Stand For</h2>
+
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-title">MISSION</div>
+        <div class="value-desc">To enhance general knowledge and to popularize quizzing as a mind sport among Mayans.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">VISION</div>
+        <div class="value-desc">To create a talented group of students with vast knowledge in different areas. We also hope to mould students who can shoulder our school towards the top of the Sri Lankan quizzing arena.</div>
+      </div>
+   <div class="value-card">
+        <div class="value-title">OBJECTIVE</div>
+        <div class="value-desc">To actively engage students in competitive quizzing, promote analytical thinking, and build confidence in academic and general knowledge competitions.</div>
+      </div>
+    </div>
+  </section>
+
+ <section style="background:var(--navy);padding:5rem 2rem;">
+    <div class="text-center">
+
+      <h2 class="section-title" style="color:var(--white);">Core Values</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Discipline</div>
+        <div class="value-desc">Consistent preparation and rigorous study are the foundations of every great quizzer.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏆</div>
+        <div class="value-title">Excellence</div>
+        <div class="value-desc">We strive for the highest competitive standards on every national and inter-school stage.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌐</div>
+        <div class="value-title">Community</div>
+        <div class="value-desc">Building a network of curious minds united by the shared love of knowledge and discovery.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features List Section -->
+  <section style="background:var(--cream);">
+    <div class="max-centered">
+      <p class="section-label">Key Initiatives</p>
+      <h2 class="section-title">What We Do</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="initiatives-list">
+      <div class="initiative-item">
+        <div class="initiative-num">01</div>
+        <div class="initiative-text">
+          <strong>QURIOUS — Intra-school quiz competition</strong>
+          <p>aims to identify and recruit the most curious and capable minds in the school, providing a fair platform for students to showcase their awareness, analytical skills, and passion for learning</p>
+        </div>
+      </div>
+      <div class="initiative-item">
+        <div class="initiative-num">02</div>
+        <div class="initiative-text">
+          <strong>Inter-School Competitions</strong>
+          <p>Active participation in competitions across Sri Lanka, representing Mahamaya Girls' College on the national quizzing circuit.</p>
+        </div>
+      </div>
+      <div class="initiative-item">
+        <div class="initiative-num">03</div>
+        <div class="initiative-text">
+          <strong>General Knowledge Workshops</strong>
+          <p>Curated workshops on current affairs, history, science, and culture, open to the wider student body.</p>
+        </div>
+      </div>
+      <div class="initiative-item">
+        <div class="initiative-num">04</div>
+        <div class="initiative-text">
+          <strong>QUAERENTEM — All island inter-school quiz Competition</strong>
+          <p>Our premier all-island inter-school quiz competition launched in 2017, bringing together the brightest student minds from across the country.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Board on About page -->
+  <section style="background:var(--navy);">
+    <div class="text-center">
+      <p class="section-label">Leadership</p>
+      <h2 class="section-title" style="color:var(--white);">Board of Officials 2026/27</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="board-grid">
+      <div class="board-card"><div class="board-role">President</div><div class="board-name">Sayuni Navarathne</div></div>
+      <div class="board-card"><div class="board-role">Secretary</div><div class="board-name">Anjana Basnayaka</div></div>
+      <div class="board-card"><div class="board-role">Treasurer</div><div class="board-name">Amanda Weerasooriya</div></div>
+      <div class="board-card"><div class="board-role">Vice President</div><div class="board-name">Theena Ranasinghe</div></div>
+      <div class="board-card"><div class="board-role">Assistant Secretary</div><div class="board-name">Ruhini Jayakody<br>Pahandi Dayananda</div></div>
+      <div class="board-card"><div class="board-role">Asst. Treasurer</div><div class="board-name">Savindya Bandara<br>Chathuri Weerasekara</div></div>
+      <div class="board-card"><div class="board-role">Chief Editor</div><div class="board-name">Vihansa Sayuringee</div></div>
+      <div class="board-card"><div class="board-role">Chief Coordinator</div><div class="board-name">Damsara Rajapaksha</div></div>
+
+      <div class="board-card"><div class="board-role">Chief Organizer</div><div class="board-name">Pahanmi Meegammana</div></div>
+      <div class="board-card"><div class="board-role">Asst. Editors</div><div class="board-name">Inaksha Ranasinghe<br>Sethuni Senevirathne</div></div>
+      <div class="board-card"><div class="board-role">Quiz Team Coordinator</div><div class="board-name">Ginuki Thirimanna</div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section style="background:var(--cream);">
+    <div class="text-center">
+      <p class="section-label">Memories</p>
+      <h2 class="section-title">Gallery</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text-mid);margin-top:1rem;">Images from previous events and competitions.</p>
+    </div>
+    <div class="gallery-placeholder">
+	<div class="gallery-box"><img src="images/photo1.jpg" alt="Quiz Event"></div>
+	<div class="gallery-box"><img src="images/photo2.jpg" alt="Quiz Event"></div>
+	<div class="gallery-box"><img src="images/photo3.png" alt="Quiz Event"></div>
+	<div class="gallery-box"><img src="images/photo4.jpg" alt="Quiz Event"></div>
+	<div class="gallery-box"><img src="images/photo5.jpg" alt="Quiz Event"></div>
+	<div class="gallery-box"><img src="images/photo6.jpg" alt="Quiz Event"></div>
+    </div>
+
+<div style="text-align:center; margin-top:2rem;">
+  <a href="https://drive.google.com/drive/folders/1uLDjd5Kcr1_pJHkXwgZrhNt48CfQ0NgW?usp=sharing" target="_blank" class="btn-solid">
+    View Full Photo Album
+  </a>
+</div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">MAHAMAYA GIRLS' COLLEGE QUIZ CLUB</div>
+    <div class="footer-sub">Kandy, Sri Lanka &nbsp;·&nbsp; Est. 2004</div>
+    <div class="footer-divider"></div>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('about')">About Us</a></li>
+      <li><a href="#" onclick="showPage('quaerentem')">Quaerentem'26</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+<!-- Social Media Icons -->
+ <div class="footer-social">
+  <a href="https://www.facebook.com/p/Quiz-Club-Of-Mahamaya-Girls-College-100084493131429/" target="_blank" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://www.instagram.com/mahamayaqc_/#" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://whatsapp.com/channel/0029VbCZg6R3gvWaUppE2b13" target="_blank" aria-label="WhatsApp Channel">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+    <div class="footer-copy">&copy; 2026 Mahamaya Girls' College Quiz Club. All rights reserved.<br> Developed by Amanda Weerasooriya</div>
+  </footer>
+
+</div><!-- /about-page -->
+
+<!-- ══════════════════════════════════
+     QUAERENTEM'26 PAGE
+══════════════════════════════════ -->
+<div id="quaerentem-page" class="page">
+
+  <div class="subpage-hero" style="background:var(--navy-mid);">
+    <p class="section-label">All-Island Quiz Competition</p>
+    <h1 class="subpage-hero-title">QUAERENTEM'26</h1>
+    <p class="subpage-hero-sub">Organized by Mahamaya Girls' College Quiz Club</p>
+  </div>
+
+  <!-- Header / Intro -->
+  <section style="background:var(--navy);">
+    <div class="max-centered text-center">
+      <p class="section-label">Introduction</p>
+      <h2 class="section-title" style="color:var(--white);">A Leading All-Island<br>Quiz Competition</h2>
+      <div class="gold-rule" style="margin:0 auto 2rem;"></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.9;color:rgba(255,255,255,0.65);">
+        QUAERENTEM — from the Latin <em>quaerere</em>, meaning "to seek" — is the flagship inter-school quiz competition organized by the Mahamaya Girls' College Quiz Club. Since its launch in 2017, QUAERENTEM has grown into a premier intellectual arena, bringing together the most competitive and knowledgeable student teams from schools across Sri Lanka.
+      </p>
+    </div>
+  </section>
+
+  <!-- Competition Format -->
+  <section style="background:var(--navy-mid);">
+    <div class="text-center">
+      <p class="section-label">Structure</p>
+      <h2 class="section-title" style="color:var(--white);">Competition Format</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="qua-format-grid">
+      <div class="qua-card">
+        <div class="qua-card-title">Junior Quiz</div>
+        <div class="qua-card-desc">A dedicated online competition for students under 15. Aspiring young minds from across the island compete virtually, with only the top 3 teams earning their place in the spotlight.</div>
+      </div>
+      <div class="qua-card">
+        <div class="qua-card-label">Stage 01</div>
+        <div class="qua-card-title">Table Quiz</div>
+        <div class="qua-card-desc">The senior arena for U19 students, featuring five rigorous rounds of intellect:
+
+Round 1: Current Affairs
+
+Round 2: Science & Technology
+
+Round 3: Arts & Culture
+
+Round 4: History & Geography
+
+Round 5: Sports & Games</div>
+      </div>
+      <div class="qua-card">
+        <div class="qua-card-label">Stage 02</div>
+        <div class="qua-card-title">Special Round</div>
+        <div class="qua-card-desc">Teams face a deep dive into specific, curated themes. These rounds test specialized knowledge beyond the general curriculum, with victors earning the prestigious title of Special Round Winners.</div>
+      </div>
+      <div class="qua-card">
+        <div class="qua-card-label">Stage 03</div>
+        <div class="qua-card-title">Grand Finale</div>
+        <div class="qua-card-desc">The ultimate stage of the QUAERENTEM championship. The highest-scoring teams from the preceding rounds face off in a high-pressure finale to claim the championship title and trophies.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules & Regulations -->
+  <section style="background:var(--navy);">
+    <div class="text-center">
+      <p class="section-label">Participation</p>
+      <h2 class="section-title" style="color:var(--white);">Rules &amp; Regulations</h2>
+      <div class="gold-rule" style="margin:0 auto 0;"></div>
+    </div>
+    <div class="about-inner">
+      <p>Eligibility criteria, registration procedures, competition rules, and conduct guidelines for QUAERENTEM'26 are documented in the official rulebook.</p>
+      <a href="QUAERENTEM'26 R&R.pdf#" class="btn-gold" target="_blank"> &nbsp; View Rules & regulations</a>
+      <p style="margin-top:1rem;font-size:0.7rem;color:rgba(255,255,255,0.2);font-family:'Raleway',sans-serif;letter-spacing:0.15em;">[ Google Drive link to be applied ]</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--cream);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;font-family:'Cinzel',serif;font-size:10rem;font-weight:700;color:rgba(10,22,40,0.04);display:flex;align-items:center;justify-content:center;pointer-events:none;white-space:nowrap;overflow:hidden;">QUAERENTEM</div>
+    <div class="cta-inner">
+      <p class="section-label">Register Your Team</p>
+      <h2 class="section-title">Compete on the<br>All-Island Stage</h2>
+      <div class="gold-rule" style="margin:0 auto 2rem;"></div>
+      <p>Register to take part in QUAERENTEM, where intellect meets opportunity. Begin your journey today.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://forms.gle/fXVFNQHY49MwUSTR6#" class="btn-solid" target="_blank">Register a Team</a>
+      </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">MAHAMAYA GIRLS' COLLEGE QUIZ CLUB</div>
+    <div class="footer-sub">Kandy, Sri Lanka &nbsp;·&nbsp; Est. 2004</div>
+    <div class="footer-divider"></div>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('about')">About Us</a></li>
+      <li><a href="#" onclick="showPage('quaerentem')">Quaerentem'26</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+<!-- Social Media Icons -->
+ <div class="footer-social">
+  <a href="https://www.facebook.com/p/Quiz-Club-Of-Mahamaya-Girls-College-100084493131429/" target="_blank" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://www.instagram.com/mahamayaqc_/#" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://whatsapp.com/channel/0029VbCZg6R3gvWaUppE2b13" target="_blank" aria-label="WhatsApp Channel">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+    <div class="footer-copy">&copy; 2026 Mahamaya Girls' College Quiz Club. All rights reserved.<br> developed by Amanda Weerasooriya</div>
+  </footer>
+
+</div><!-- /quaerentem-page -->
+
+<!-- ══════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════ -->
+<div id="contact-page" class="page">
+
+  <div class="subpage-hero">
+    <p class="section-label">Reach Out</p>
+    <h1 class="subpage-hero-title">Contact Us</h1>
+    <p class="subpage-hero-sub">We'd love to hear from you</p>
+  </div>
+
+  <!-- Contact Section -->
+  <section style="background:var(--navy);">
+    <div class="text-center">
+      <p class="section-label">Direct Contacts</p>
+      <h2 class="section-title" style="color:var(--white);">Get in Touch</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card"><center>
+        <div class="contact-card-role">President</div>
+        <div class="contact-card-name">Sayuni Navarathne</div>
+        <div class="contact-card-detail"> 071 686 7569</div></center>
+
+      </div>
+      <div class="contact-card"><center>
+        <div class="contact-card-role">Secretary</div>
+        <div class="contact-card-name">Anjana Basnayaka</div>
+        <div class="contact-card-detail"> 076 942 8356</div></center>
+
+      </div>
+      <div class="contact-card"><center>
+        <div class="contact-card-role">Teacher In Charge</div>
+        <div class="contact-card-name">Mrs. Deeksha Idamegama</div>
+        <div class="contact-card-detail"> 076 974 4603</div></center>
+      </div>
+    </div>
+    <div class="contact-email-block">
+      <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;font-family:'Raleway',sans-serif;">Email</p>
+      <a href="mailto:mahamayaqc@gmail.com">mahamayaqc@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section style="background:var(--navy);">
+    <div class="text-center">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title" style="color:var(--white);">Location</h2>
+      <div class="gold-rule" style="margin:0 auto;"></div>
+    </div>
+    <div class="location-map">
+      <p>
+        <strong style="color:var(--gold);font-family:'Cinzel',serif;font-size:1rem;display:block;margin-bottom:0.5rem;">Mahamaya Girls' College</strong>
+        Kandy, Central Province<br>Sri Lanka
+      </p>
+      <p style="font-size:0.8rem;color:rgba(255,255,255,0.3);font-family:'Raleway',sans-serif;letter-spacing:0.1em;"></p>
+      <a href="https://maps.google.com/?q=Mahamaya+Girls+College+Kandy" target="_blank" class="btn-gold">View on Google Maps</a>
+    </div>
+  </section>
+
+  <footer>
+  <div class="footer-logo">MAHAMAYA GIRLS' COLLEGE QUIZ CLUB</div>
+  <div class="footer-sub">Kandy, Sri Lanka &nbsp;·&nbsp; Est. 2004</div>
+
+  <div class="footer-divider"></div>
+
+  <ul class="footer-nav">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+    <li><a href="#" onclick="showPage('quaerentem')">Quaerentem'26</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+
+  <!-- Social Media Icons -->
+ <div class="footer-social">
+  <a href="https://www.facebook.com/p/Quiz-Club-Of-Mahamaya-Girls-College-100084493131429/" target="_blank" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://www.instagram.com/mahamayaqc_/#" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://whatsapp.com/channel/0029VbCZg6R3gvWaUppE2b13" target="_blank" aria-label="WhatsApp Channel">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+  <div class="footer-copy">
+    &copy; 2026 Mahamaya Girls' College Quiz Club. All rights reserved.<br> Developed by Amanda Weerasooriya
+  </div>
+</footer>
+
+</div><!-- /contact-page -->
+
+<script>
+  function showPage(page) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+    const map = {
+      home: 'home',
+      about: 'about-page',
+      quaerentem: 'quaerentem-page',
+      contact: 'contact-page'
+    };
+
+    const target = document.getElementById(map[page]);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Update nav link states
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-links a[onclick*="${page}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  }
+
+  // Intersection observer for subtle scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.board-card, .value-card, .qua-card, .initiative-item, .contact-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
