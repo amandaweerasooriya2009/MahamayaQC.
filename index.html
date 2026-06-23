@@ -396,6 +396,24 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     .feature-inner { grid-template-columns: 1fr; gap: 3rem; }
   }
 
+	 .feature-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 1.2s 0.3s ease both;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.4rem;
+        letter-spacing: 0.02em;
+    }
+}
+	
   .feature-text p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.15rem;
